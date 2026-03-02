@@ -23,7 +23,7 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                 {{-- zajednicki: "rounded-md px-3 py-2 text-sm font-medium" --}}
                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
+                <x-nav-link href="/jobs" :active="request()->is('about')">Jobs</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
                 </div>
             </div>
