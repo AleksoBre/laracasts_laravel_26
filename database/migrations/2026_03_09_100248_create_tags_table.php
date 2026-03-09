@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('job_tag', function (Blueprint $table) {
+        Schema::create('job_listing_tag', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(JobListing::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
