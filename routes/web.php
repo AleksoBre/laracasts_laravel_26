@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('/jobs', function () {
     return view('jobs', [
-        'jobs' => JobListing::with('employer')->paginate(3)
+        'jobs' => JobListing::with('employer')->Paginate(3)
     ]);
 });
 
