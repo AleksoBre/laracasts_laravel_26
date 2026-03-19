@@ -3,22 +3,20 @@
 use App\Models\JobListing;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'home');
 
-Route::get('/jobs', function () {
-    return view('jobs', [
+Route::get('/jobs', function () 
+{
+    return view('jobs.index', [
         'jobs' => JobListing::with('employer')->Paginate(3)
     ]);
 });
 
-Route::get('/jobs/{id}', function ($id) {
+Route::view('/jobs/create', 'jobs.create');
 
-    return view('job', ['job' => JobListing::find($id)]);
-
+Route::get('/jobs/{id}', function ($id) 
+{
+    return view('jobs.show', ['job' => JobListing::find($id)]);
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::view('/contact', 'contact');
