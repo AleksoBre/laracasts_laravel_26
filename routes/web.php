@@ -14,6 +14,10 @@ Route::get('/jobs', function ()
 
 Route::view('/jobs/create', 'jobs.create');
 
+Route::post('/jobs', function() {
+    dd('hello from the post jobs');
+});
+
 Route::get('/jobs/{id}', function ($id) 
 {
     return view('jobs.show', ['job' => JobListing::find($id)]);

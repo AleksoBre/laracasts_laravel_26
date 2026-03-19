@@ -1,5 +1,14 @@
 <x-layout>
-    <x-slot:heading>About</x-slot>
+    <x-slot:heading>
+        <div class="flex items-center justify-between w-full">
+            <span>Jobs Posting</span>
+            
+            <a href="/jobs/create" 
+               class="inline-flex items-center gap-x-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
+                Create Job
+            </a>
+        </div>
+    </x-slot>
 
     <div class="space-y-4">
         @foreach ($jobs as $job)
