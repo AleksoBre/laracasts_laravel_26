@@ -29,7 +29,7 @@
 
             <div>
                 <p class="text-sm text-gray-700 leading-5 dark:text-gray-600">
-                    {!! __('Prikaz') !!}
+                    {!! __('Prikaz od') !!}
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
                         {!! __('do') !!}
