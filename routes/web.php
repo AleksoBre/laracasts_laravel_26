@@ -8,14 +8,23 @@ Route::view('/', 'home');
 Route::get('/jobs', function () 
 {
     return view('jobs.index', [
-        'jobs' => JobListing::with('employer')->simplePaginate(10)
+        'jobs' => JobListing::with('employer')->latest()->simplePaginate(10)
     ]);
 });
 
 Route::view('/jobs/create', 'jobs.create');
 
 Route::post('/jobs', function() {
-    dd('hello from the post jobs');
+    //validation
+
+    JobListing::create([
+        'employer_id' => 1,
+        'title' => request('job_title'),
+        'salary' => request('job_salary'),
+    ]);
+
+    return redirect('/jobs');
+
 });
 
 Route::get('/jobs/{id}', function ($id) 
