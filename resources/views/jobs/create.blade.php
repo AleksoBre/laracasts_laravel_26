@@ -15,7 +15,7 @@
               <input id="title" type="text" name="title" placeholder="leatherworker" class="block min-w-0 grow bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" />
             </div>
             @error('title')
-              <p class="mt-2 text-red-500 italic font-semibold">{{ $message }}</p>
+              <p class="text-sm mt-1 text-red-500 italic font-semibold">{{ $message }}</p>
             @enderror
           </div>
         </div>
@@ -27,7 +27,7 @@
               <input id="salary" type="text" name="salary" placeholder="$100,000 per year" class="block min-w-0 grow bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" />
             </div>
             @error('salary')
-              <p class="mt-2 text-red-500 italic font-semibold">{{ $message }}</p>
+              <p class="text-sm mt-1 text-red-500 italic font-semibold">{{ $message }}</p>
             @enderror
           </div>
         </div>
