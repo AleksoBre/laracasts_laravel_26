@@ -16,11 +16,15 @@ Route::view('/jobs/create', 'jobs.create');
 
 Route::post('/jobs', function() {
     //validation
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'salary' => ['required']
+    ]);
 
     JobListing::create([
         'employer_id' => 1,
-        'title' => request('job_title'),
-        'salary' => request('job_salary'),
+        'title' => request('title'),
+        'salary' => request('salary'),
     ]);
 
     return redirect('/jobs');
