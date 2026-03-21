@@ -54,12 +54,14 @@ Route::patch('/jobs/{job}', function(JobListing $job) {
         'salary' => request('salary')
         ]);
 
-    return redirect('/jobs/$job->id');
+    return redirect('/jobs/' . $job->id);
 });
 
 // Destroy
 Route::delete('/jobs/{job}', function(JobListing $job) {
-
+    // authorize
+    $job->delete();
+    return redirect('/jobs');
 });
 
 // Show
