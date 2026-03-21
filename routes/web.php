@@ -40,8 +40,26 @@ Route::get('/jobs/{job}/edit', function (JobListing $job) {
 });
 
 // Update
-Route::patch('/jobs/{job}/edit', function(JobListing $job) {
-    
+Route::patch('/jobs/{job}', function(JobListing $job) {
+    //validation
+    request()->validate([
+        'title' => ['required', 'min:3'],
+        'salary' => ['required', 'min:3']
+    ]);
+
+    //authorize
+
+    $job->update([
+        'title' => request('title'),
+        'salary' => request('salary')
+        ]);
+
+    return redirect('/jobs/$job->id');
+});
+
+// Destroy
+Route::delete('/jobs/{job}', function(JobListing $job) {
+
 });
 
 // Show
