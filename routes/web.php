@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 
+// Index
 Route::get('/jobs', function () 
 {
     return view('jobs.index', [
@@ -12,8 +13,10 @@ Route::get('/jobs', function ()
     ]);
 });
 
+// Create
 Route::view('/jobs/create', 'jobs.create');
 
+// Store
 Route::post('/jobs', function() {
 
     request()->validate([
@@ -31,11 +34,20 @@ Route::post('/jobs', function() {
 
 });
 
-Route::view('/jobs/edit', 'jobs.edit');
+// Edit
+Route::get('/jobs/{job}/edit', function (JobListing $job) {
+    return view('jobs.edit', ['job' => $job]);
+});
 
-Route::get('/jobs/{id}', function ($id) 
+// Update
+Route::patch('/jobs/{job}/edit', function(JobListing $job) {
+    
+});
+
+// Show
+Route::get('/jobs/{job}', function (JobListing $job) 
 {
-    return view('jobs.show', ['job' => JobListing::find($id)]);
+    return view('jobs.show', ['job' => $job]);
 });
 
 Route::view('/contact', 'contact');
