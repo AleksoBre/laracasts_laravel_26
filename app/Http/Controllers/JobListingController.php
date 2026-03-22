@@ -36,16 +36,31 @@ class JobListingController extends Controller
     {
         return view('jobs.show', ['job' => $job]);
     }
-    public function edit()
+    public function edit(JobListing $job)
     {
-
+        return view('jobs.edit', ['job' => $job]);
     }
-    public function update()
+    public function update(JobListing $job)
     {
+        //validation
+        request()->validate([
+            'title' => ['required', 'min:3'],
+            'salary' => ['required', 'min:3']
+        ]);
 
+        //authorize
+
+        $job->update([
+            'title' => request('title'),
+            'salary' => request('salary')
+            ]);
+
+        return redirect('/jobs/' . $job->id);
     }
-    public function destroy()
+    public function destroy(JobListing $job)
     {
-
+        // authorize
+        $job->delete();
+        return redirect('/jobs');
     }
 }
