@@ -1,73 +1,30 @@
 <?php
 
+use App\Http\Controllers\JobListingController;
 use App\Models\JobListing;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 
 // Index
-Route::get('/jobs', function () 
-{
-    return view('jobs.index', [
-        'jobs' => JobListing::with('employer')->latest()->simplePaginate(10)
-    ]);
-});
+Route::get('/jobs', [JobListingController::class, 'index']);
 
 // Create
-Route::view('/jobs/create', 'jobs.create');
+Route::get('/jobs/{job}/create', [JobListingController::class, 'create']);
 
 // Store
-Route::post('/jobs', function() {
-
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required']
-    ]);
-
-    JobListing::create([
-        'employer_id' => 1,
-        'title' => request('title'),
-        'salary' => request('salary'),
-    ]);
-
-    return redirect('/jobs');
-
-});
+Route::post('/jobs', [JobListingController::class, 'store']);
 
 // Edit
-Route::get('/jobs/{job}/edit', function (JobListing $job) {
-    return view('jobs.edit', ['job' => $job]);
-});
+Route::get('/jobs/{job}/edit', JobListingController::class, 'edit');
 
 // Update
-Route::patch('/jobs/{job}', function(JobListing $job) {
-    //validation
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required', 'min:3']
-    ]);
-
-    //authorize
-
-    $job->update([
-        'title' => request('title'),
-        'salary' => request('salary')
-        ]);
-
-    return redirect('/jobs/' . $job->id);
-});
+Route::patch('/jobs/{job}', JobListingController::class, 'update');
 
 // Destroy
-Route::delete('/jobs/{job}', function(JobListing $job) {
-    // authorize
-    $job->delete();
-    return redirect('/jobs');
-});
+Route::delete('/jobs/{job}', JobListingController::class, 'destroy');
 
 // Show
-Route::get('/jobs/{job}', function (JobListing $job) 
-{
-    return view('jobs.show', ['job' => $job]);
-});
+Route::get('/jobs/{job}', [JobListingController::class, 'show']);
 
 Route::view('/contact', 'contact');
