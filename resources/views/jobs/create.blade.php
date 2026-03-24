@@ -8,12 +8,23 @@
       <p class="mt-1 text-sm/6 text-gray-600">We just need a quick few data points.</p>
 
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <x-form-field id="title" placeholder="eg. carpenter">
-          Job Title
+
+        <x-form-field>
+          <x-form-label for="title">Job Title</x-form-label>
+          <div class="mt-2">
+            <x-form-input id="title" name="title" placeholder="$100,000 a year" required/>
+            <x-form-error id="title"/>
+          </div>
         </x-form-field>
-        <x-form-field id="salary" placeholder="$100,000"  required>
-          Salary
+
+        <x-form-field>
+          <x-form-label for="salary">Job Salary</x-form-label>
+          <div class="mt-2">
+            <x-form-input id="salary" name="salary" placeholder="$100,000 a year" required/>
+            <x-form-error id="salary"/>
+          </div>
         </x-form-field>
+        
       </div>
       
     </div>
