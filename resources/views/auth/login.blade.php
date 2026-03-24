@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:heading>Login</x-slot:heading>
 
-<form method="POST" action="/jobs">
+<form method="POST" action="/login">
     @csrf
   <div class="space-y-12">
     <div class="border-b border-gray-900/10 pb-12">

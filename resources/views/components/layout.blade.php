@@ -23,10 +23,17 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
                 {{-- zajednicki: "rounded-md px-3 py-2 text-sm font-medium" --}}
                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                <x-nav-link href="/jobs" :active="request()->is('about')">Jobs</x-nav-link>
+                <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
                 <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
                 </div>
+
             </div>
+            @guest
+            <div class="hidden md:block flex items-center">
+                <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
+                <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+            </div>
+            @endguest
             </div>
         </div>
         </div>
