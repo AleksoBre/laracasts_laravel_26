@@ -10,7 +10,7 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
-    public function show() {
-        return view('auth.login');
+    public function store() {
+        dd('to do');
     }
 }
