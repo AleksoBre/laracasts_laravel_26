@@ -25,7 +25,7 @@ class JobListingController extends Controller
         ]);
 
         JobListing::create([
-            'employer_id' => 1,
+            'employer_id' => 2,
             'title' => request('title'),
             'salary' => request('salary'),
         ]);
