@@ -16,7 +16,7 @@ class RegisteredUserController extends Controller
     }
 
     public function store() {
-        //validate
+
         $attributes = request()->validate([
             'first_name' => ['required', 'min:3'],
             'last_name' => ['required', 'min:3'],
@@ -24,16 +24,10 @@ class RegisteredUserController extends Controller
             'password' => ['required', Password::min(5)->symbols(), 'confirmed']
         ]);
 
-        //create registered user
         $user = User::create($attributes);
-
-        //log in
         Auth::login($user);
 
-        //redirect
         return redirect('/');
 
-
-        dd('to do');
     }
 }
