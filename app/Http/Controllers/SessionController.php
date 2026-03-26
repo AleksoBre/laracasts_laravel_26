@@ -14,30 +14,24 @@ class SessionController extends Controller
         return view('auth.login');
     }
     public function store() {
-        //validate
+        //validate input
         $attributes = request()->validate([
             'email' => ['required', 'email'],
-            'password' => ['required', Password::min(5)->symbols()]
+            'password' => ['required', Password::min(5)]
         ]);
 
-        //attempt to log in user
+        //attempt to log in
         if(! Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
-                'email' => "Sorry, those credentials don't match"
+                "The credentials don't match"
             ]);
         }
 
-
+        //regen token
         request()->session()->regenerate();
-        // regenarate the session token
 
-        return redirect('/');
         //redirect
-
-
-
-
-        dd('to do store session');
+        return redirect('/');
     }
     public function destroy() {
         Auth::logout();
