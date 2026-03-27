@@ -11,7 +11,7 @@
             <x-form-field>
                 <x-form-label for="first_name">First Name</x-form-label>
                 <div class="mt-2">
-                    <x-form-input id="first_name" name="first_name" required/>
+                    <x-form-input id="first_name" name="first_name" :value="old('first_name')" required/>
                     <x-form-error id="first_name"/>
                 </div>
             </x-form-field>
@@ -19,7 +19,7 @@
             <x-form-field>
                 <x-form-label for="last_name">Last Name</x-form-label>
                 <div class="mt-2">
-                    <x-form-input id="last_name" name="last_name" required/>
+                    <x-form-input id="last_name" name="last_name" :value="old('last_name')" required/>
                     <x-form-error id="last_name"/>
                 </div>
             </x-form-field>
@@ -27,7 +27,7 @@
             <x-form-field>
                 <x-form-label for="email">Email</x-form-label>
                 <div class="mt-2">
-                    <x-form-input id="email" name="email" type="email" required/>
+                    <x-form-input id="email" name="email" type="email" :value="old('email')" required/>
                     <x-form-error id="email"/>
                 </div>
             </x-form-field>
