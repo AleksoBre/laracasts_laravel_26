@@ -23,7 +23,7 @@ class SessionController extends Controller
         //attempt to log in
         if(! Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
-                "The credentials don't match"
+                'password' => "The credentials don't match"
             ]);
         }
 
