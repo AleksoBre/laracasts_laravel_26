@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobListing;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobListingController extends Controller
 {
@@ -28,7 +30,7 @@ class JobListingController extends Controller
         JobListing::create([
             'employer_id' => 2,
             'title' => request('title'),
-            'salary' => request('salary'),
+            'salary' => request('salary')
         ]);
 
         return redirect('/jobs');
@@ -39,14 +41,9 @@ class JobListingController extends Controller
     }
     public function edit(JobListing $job)
     {
-        if(Auth::guest()) {
-            return redirect('/login');
-        }
 
-        //if (! user has employer) ? redirect to /jobs
-        if($job->employer->user->isNot(Auth::user())) {
-            abort(403);
-        }
+        Gate::authorize('edit-job', $job);
+
 
 
         return view('jobs.edit', ['job' => $job]);
