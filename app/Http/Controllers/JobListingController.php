@@ -32,6 +32,7 @@ class JobListingController extends Controller
             'title' => request('title'),
             'salary' => request('salary')
         ]);
+        
 
         return redirect('/jobs');
     }
