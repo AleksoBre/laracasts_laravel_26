@@ -9,12 +9,12 @@ Route::view('/', 'home');
 
 Route::view('/contact', 'contact');
 
-Route::resource('jobs', JobListingController::class);
+Route::resource('jobs', JobListingController::class)->only('edit', 'update', 'destroy')->middleware('auth');
 
 //Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/login', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
