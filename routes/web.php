@@ -13,14 +13,14 @@ Route::view('/contact', 'contact');
 // Route::resource('jobs', JobListingController::class)->only('edit', 'update', 'destroy')->middleware('auth');
 // Route::resource('jobs', JobListingController::class)->except('edit', 'update', 'destroy');
 
-//index, create, store, show, edit, update, destroy
 Route::get('/jobs', [JobListingController::class, 'index']);
 Route::get('/jobs/create', [JobListingController::class, 'create']);
-Route::post('/jobs', [JobListingController::class, 'store']);
+Route::post('/jobs', [JobListingController::class, 'store'])->middleware('auth');
 Route::get('/jobs/{job}', [JobListingController::class, 'show']);
-Route::get('/jobs', [JobListingController::class, 'index']);
-Route::get('/jobs', [JobListingController::class, 'index']);
-Route::get('/jobs', [JobListingController::class, 'index']);
+// Route::get('/jobs/{job}/edit', [JobListingController::class, 'edit'])->middleware(['auth', 'can:edit-job,job']);
+Route::get('/jobs/{job}/edit', [JobListingController::class, 'edit'])->middleware('auth')->can('edit', 'job');
+Route::post('/jobs/{job}', [JobListingController::class, 'update'])->middleware('auth');
+Route::post('/jobs/{job}', [JobListingController::class, 'destroy'])->middleware('auth');
 
 
 

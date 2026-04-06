@@ -42,8 +42,6 @@ class JobListingController extends Controller
     }
     public function edit(JobListing $job)
     {
-        Gate::authorize('edit-job', $job);
-
         return view('jobs.edit', ['job' => $job]);
     }
     public function update(JobListing $job)

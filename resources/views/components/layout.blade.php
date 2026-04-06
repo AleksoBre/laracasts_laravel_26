@@ -40,6 +40,7 @@
                     @csrf
                     <x-form-button>Log Out</x-form-button>
                 </form>
+                {{ Auth::user()->id }}
             @endauth
 
             </div>

@@ -6,12 +6,13 @@
         
         This job pays <strong>{{$job['salary']}}</strong>. 
     </p>
-    
     <div class="flex items-center gap-x-6 mt-3">
+        @can('edit', $job)
         <a href="/jobs/{{ $job->id }}/edit" 
             class="inline-flex items-center gap-x-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200 hover:-translate-y-0.5 active:scale-95">
             Edit Job
         </a>
+        @endcan
     
         <form action="/jobs/{{ $job->id }}" method="post">
             @csrf
