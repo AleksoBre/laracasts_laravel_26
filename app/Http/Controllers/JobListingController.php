@@ -28,11 +28,11 @@ class JobListingController extends Controller
         ]);
 
         JobListing::create([
-            'employer_id' => 2,
+            'employer_id' => Auth::user()->employer->id,
             'title' => request('title'),
             'salary' => request('salary')
         ]);
-        
+
 
         return redirect('/jobs');
     }

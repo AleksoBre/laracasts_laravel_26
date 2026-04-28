@@ -7,20 +7,17 @@ use App\Models\JobListing;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
-
 Route::view('/contact', 'contact');
 
-// Route::resource('jobs', JobListingController::class)->only('edit', 'update', 'destroy')->middleware('auth');
-// Route::resource('jobs', JobListingController::class)->except('edit', 'update', 'destroy');
-
-Route::get('/jobs', [JobListingController::class, 'index']);
-Route::get('/jobs/create', [JobListingController::class, 'create']);
-Route::post('/jobs', [JobListingController::class, 'store'])->middleware('auth');
-Route::get('/jobs/{job}', [JobListingController::class, 'show']);
-// Route::get('/jobs/{job}/edit', [JobListingController::class, 'edit'])->middleware(['auth', 'can:edit-job,job']);
-Route::get('/jobs/{job}/edit', [JobListingController::class, 'edit'])->middleware('auth')->can('edit', 'job');
-Route::post('/jobs/{job}', [JobListingController::class, 'update'])->middleware('auth');
-Route::post('/jobs/{job}', [JobListingController::class, 'destroy'])->middleware('auth');
+Route::controller(JobListingController::class)->group(function() {
+    Route::get('/jobs', 'index');
+    Route::get('/jobs/create', 'create');
+    Route::post('/jobs', 'store')->middleware('auth');
+    Route::get('/jobs/{job}', 'show');
+    Route::get('/jobs/{job}/edit', 'edit')->middleware('auth')->can('edit', 'job');
+    Route::post('/jobs/{job}', 'update')->middleware('auth');
+    Route::delete('/jobs/{job}', 'destroy')->middleware('auth');
+});
 
 
 
@@ -31,3 +28,7 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
+
+//auth
+//show buttons based on auth
+//add auth middleware
