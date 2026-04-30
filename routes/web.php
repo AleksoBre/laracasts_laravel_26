@@ -3,17 +3,21 @@
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
+use App\Mail\JobPosted;
 use App\Models\JobListing;
+use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
 
+
+
 Route::controller(JobListingController::class)->group(function() {
     Route::get('/jobs', 'index');
     Route::get('/jobs/create', 'create');
     Route::post('/jobs', 'store')->middleware('auth');
-    Route::get('/jobs/{job}', 'show');
+    Route::get('/jobs/{job}', 'show')->name('jobs.show');
     Route::get('/jobs/{job}/edit', 'edit')->middleware('auth')->can('edit', 'job');
     Route::post('/jobs/{job}', 'update')->middleware('auth');
     Route::delete('/jobs/{job}', 'destroy')->middleware('auth');
